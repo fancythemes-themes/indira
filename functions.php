@@ -391,14 +391,6 @@ function indira_hex2rgb( $color ) {
  */
 require get_template_directory() . '/inc/template-tags.php';
 
-if ( class_exists( 'Jetpack') ) :
-	/**
-	 * Jetpack. Only include if Jetpack plugin installed.
-	 *
-	 */
-	require get_template_directory() . '/inc/jetpack.php';
-endif;
-
 /**
  * Customizer additions.
  */
@@ -418,26 +410,12 @@ require get_template_directory() . '/inc/sanitize-callbacks.php';
 /**
  * TGMPA Class.
  */
-require get_template_directory() . '/inc/tgmpa/class-tgm-plugin-activation.php';
+//require get_template_directory() . '/inc/tgmpa/class-tgm-plugin-activation.php';
 
 /**
  * Posts widget.
  */
 require get_template_directory() . '/inc/widgets/recent-posts.php';
-
-if ( class_exists( 'StormTwitter' ) ) :
-	/**
-	 * Twitter widget. Only include when the oAuth Twitter Feed for Developer plugin installed
-	 *
-	 */
-	require get_template_directory() . '/inc/widgets/twitter.php';
-endif;
-
-/**
- * Instagram widget.
- *
- */
-require get_template_directory() . '/inc/widgets/instagram.php';
 
 /**
  * Add custom image sizes attribute to enhance responsive image functionality
@@ -633,3 +611,67 @@ function indira_register_required_plugins() {
 }
 add_action( 'tgmpa_register', 'indira_register_required_plugins' );
 
+/**
+ * Setup a font controls & settings for Easy Google Fonts plugin (if installed)
+ *
+ * @since Noname1 1.0
+ *
+ * @param array $options Default control list by the plugin.
+ * @return array Modified $options parameter to applied in filter 'tt_font_get_option_parameters'.
+ */
+function indira_easy_google_fonts($options) {
+
+	// Just replace all the plugin default font control
+
+	unset(  $options['tt_default_body'],
+			$options['tt_default_heading_2'],
+			$options['tt_default_heading_3'],
+			$options['tt_default_heading_4'],
+			$options['tt_default_heading_5'],
+			$options['tt_default_heading_6'],
+			$options['tt_default_heading_1']
+		);
+
+	$new_options = array(
+		
+		'indira_default_body' => array(
+			'name'        => 'indira_default_body',
+			'title'       => esc_html__( 'Body & Paragraphs', 'indira' ),
+			'description' => esc_html__( "Please select a font for the theme's body and paragraph text", 'indira' ),
+			'properties'  => array( 'selector' => apply_filters( 'indira_default_body_font', 'body, input, select, textarea, blockquote cite, .entry-footer, .site-main div.sharedaddy h3.sd-title' ) ),
+		),
+
+		'indira_default_menu' => array(
+			'name'        => 'indira_default_menu',
+			'title'       => esc_html__( 'Menu', 'indira' ),
+			'description' => esc_html__( "Please select a font for the theme's menu styles", 'indira' ),
+			'properties'  => array( 'selector' => apply_filters( 'indira_default_heading', '.main-navigation' ) ),
+		),
+
+		'indira_default_entry_title' => array(
+			'name'        => 'indira_default_entry_title',
+			'title'       => esc_html__( 'Entry Title', 'indira' ),
+			'description' => esc_html__( "Please select a font for the theme's Entry title styles", 'indira' ),
+			'properties'  => array( 'selector' => apply_filters( 'indira_default_entry_title_font',  '.site-title, .entry-title, .post-navigation .post-title, .widget-recent-posts .sort-comment_count article .post-thumbnail:before, .page-title, .site-main #jp-relatedposts .jp-relatedposts-items-visual h4.jp-relatedposts-post-title a, .site-main #jp-relatedposts h3.jp-relatedposts-headline, #jp-relatedposts .jp-relatedposts-items p .jp-relatedposts-post-title,.widget_authors > ul > li > a, .widget_text h2 ' ) ),
+		),
+
+		'indira_default_entry_meta' => array(
+			'name'        => 'indira_default_entry_meta',
+			'title'       => esc_html__( 'Entry Meta', 'indira' ),
+			'description' => esc_html__( "Please select a font for the theme's Entry meta styles", 'indira' ),
+			'properties'  => array( 'selector' => apply_filters( 'indira_default_meta_font', '.entry-meta, .site-info, .site-breadcrumbs, .posted-on, .post-navigation .meta-nav, .comment-metadata, .pingback .edit-link, .comment-reply-link, .site-content #jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-date, .site-content #jp-relatedposts .jp-relatedposts-items .jp-relatedposts-post .jp-relatedposts-post-context, .site-featured-posts .more-featured-title, .page-header .archive-title-pre' ) ),
+		),
+
+		'indira_default_widget_title' => array(
+			'name'        => 'indira_default_widget_title',
+			'title'       => esc_html__( 'Widget Title', 'indira' ),
+			'description' => esc_html__( "Please select a font for the theme's Widget title styles", 'indira' ),
+			'properties'  => array( 'selector' => apply_filters( 'indira_default_widget_title_font', '.widget .widget-title, .widget-recent-posts .tab-control a span, .comments-title, .comment-reply-title, #page .site-main #jp-relatedposts h3.jp-relatedposts-headline, .site-main #jp-relatedposts h3.jp-relatedposts-headline em, .widget-recent-posts .image-medium.sort-comment_count li .post-thumbnail:before, .entry-category, .author-title, .widget-area-full .widget-recent-posts .slider-fullwidth-title ' ) ),
+		),
+
+
+	);
+
+	return array_merge( $options, $new_options);
+}
+add_filter( 'tt_font_get_option_parameters', 'indira_easy_google_fonts', 10 , 1 );

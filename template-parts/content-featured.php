@@ -11,7 +11,7 @@
 
 	<header class="entry-header">
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
-			<span class="sticky-post"><?php _e( 'Featured', 'indira' ); ?></span>
+			<span class="sticky-post"><?php esc_html_e( 'Featured', 'indira' ); ?></span>
 		<?php endif; ?>
 
 		<div class="entry-meta">

@@ -10,17 +10,18 @@
 
 <article class="no-results not-found">
 	<header class="page-header-no-result">
-		<h1 class="page-title"><?php _e( 'Nothing Found', 'indira' ); ?></h1>
+		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'indira' ); ?></h1>
 	</header><!-- .page-header -->
 
 	<div class="page-content">
 		<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
-			<p><?php printf( '%1$s<a href="%2$s">%3$s</a>.', 
-						esc_html__( 'Ready to publish your first post?', 'indira') ,
-						esc_url( admin_url( 'post-new.php' ) ),
-						esc_html_x( 'Get started here', 'anchor text for link to create post', 'indira' )
-					 ); 
+			<p><?php
+				printf( '%1$s<a href="%2$s">%3$s</a>.', 
+					esc_html__( 'Ready to publish your first post?', 'indira') ,
+					esc_url( admin_url( 'post-new.php' ) ),
+					esc_html_x( 'Get started here', 'anchor text for link to create post', 'indira' )
+				); 
 			?>
 			</p>
 

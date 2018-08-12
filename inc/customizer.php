@@ -174,7 +174,22 @@ function indira_customize_items( $settings ) {
 		'section'			=> 'colors',
 		'apply_css'			=> array (
 			array (
-				'selector' => '.site, .sticky-menu .site-header, .site-search .search-toggle.toggled + .search-form, .main-navigation ul ul li, .footer-widgets-container .widget-area-full .widget:after',
+				'selector' => 
+					  '.site-header, '
+					. '.classic-view .site-main > article .post-thumbnail + header, '  
+					. '.site-search .search-toggle.toggled + .search-form, '
+					. '.main-navigation ul ul li, '
+					. '.footer-widgets-container .widget-area-full .widget:after, '
+					. '.site-main > article, '
+					. '.comments-area, '
+					. '.post-navigation, '
+					. '.widget > div, '
+					. '.widget > ul, .'
+					. 'widget > ol, '
+					. '.widget > form, '
+					. '.widget > blockquote, '
+					. '.widget > p, '
+					. '.site-footer' ,
 				'property' => 'background-color',
 			),
 			array (
@@ -366,6 +381,7 @@ function indira_customize_items( $settings ) {
 					. 'input[type="reset"]:focus, '
 					. 'input[type="submit"]:hover, '
 					. 'input[type="submit"]:focus, '
+					. '.entry-cats .cat-links, '
 					. '.load-more a:hover, '
 					. '.load-more a:focus, '
 					. '.tagcloud a, '
@@ -376,9 +392,15 @@ function indira_customize_items( $settings ) {
 				'selector' =>
 					  '.tagcloud a:hover, '
 					. '.tagcloud a:focus, '
+					. '.more-link, '
 					. '.menu-toggle:hover, '
-					. '.menu-toggle:focus ',
+					. '.menu-toggle:focus ' ,
 				'property' => 'border-color'  	
+			),
+			array(
+				'selector' => 
+					 '.entry-cats .cat-links:after ',
+				'property' => 'border-left-color'
 			)
 		)
 	);
@@ -599,7 +621,7 @@ function indira_color_schemes() {
 		array (
 			'label' => esc_html__( 'Default', 'indira' ),
 			'colors' => array (
-				'body_background_color'		=> '#ffffff',
+				'body_background_color'		=> '#eeeeee',
 				'content_background_color'	=> '#ffffff',
 				'menu_color'				=> '#000000',
 				'text_color'				=> '#000000',
@@ -612,7 +634,7 @@ function indira_color_schemes() {
 		array ( 
 			'label' => esc_html__( 'Dark', 'indira' ),
 			'colors' => array ( 
-				'body_background_color'		=> '#070707',
+				'body_background_color'		=> '#222222',
 				'content_background_color'	=> '#070707',
 				'menu_color'				=> '#ffffff',
 				'text_color'				=> '#ffffff',

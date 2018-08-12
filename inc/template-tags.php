@@ -428,10 +428,11 @@ function indira_archive_title() {
 			$title = esc_html_x( 'Chats', 'post format archive title', 'indira' );
 		}
 	} elseif ( is_post_type_archive() ) {
+		/* translators: %s: Post type archive title */
 		$title = sprintf( esc_html__( 'Archives: %s' , 'indira'), post_type_archive_title( '', false ) );
 	} elseif ( is_tax() ) {
 		$tax = get_taxonomy( get_queried_object()->taxonomy );
-		/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
+		/* translators: %1$s: Taxonomy singular name, %2$s: Current taxonomy term */
 		$title = sprintf( esc_html__( '%1$s: %2$s', 'indira' ), $tax->labels->singular_name, single_term_title( '', false ) );
 	} else {
 		$title = esc_html__( 'Archives', 'indira' );

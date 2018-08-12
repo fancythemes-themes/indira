@@ -15,7 +15,6 @@
  */
 
 get_header(); ?>
-	<?php //if ( get_theme_mod('featured_posts_on', false ) ) get_template_part('featured-posts'); ?>
 	<?php if ( is_active_sidebar( 'header-widget-full-width' )  ) : ?>
 		<div class="header-widget widget-area-full" >
 			<?php dynamic_sidebar( 'header-widget-full-width' ); ?>

@@ -18,7 +18,12 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'indira' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h1>
+				<h1 class="page-title">
+					<?php
+					/* translators: %s: keyword for search */
+					printf( esc_html__( 'Search Results for: %s', 'indira' ), '<span>' . esc_html( get_search_query() ) . '</span>' );
+					?>
+				</h1>
 			</header><!-- .page-header -->
 
 			<?php

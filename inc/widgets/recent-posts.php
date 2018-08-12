@@ -24,10 +24,10 @@ class Indira_Widget_Recent_Posts extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array(
 			'classname' => 'widget-recent-posts',
-			'description' => __( "Your site&#8217;s most recent Posts.", 'indira'),
+			'description' => esc_html__( "Your site&#8217;s most recent Posts.", 'indira'),
 			'customize_selective_refresh' => true,
 		 );
-		parent::__construct('indira-recent-posts', __('Indira - Recent Posts', 'indira'), $widget_ops);
+		parent::__construct('indira-recent-posts', esc_html__('Indira - Recent Posts', 'indira'), $widget_ops);
 		$this->alt_option_name = 'widget_recent_posts';
 	}
 
@@ -74,8 +74,8 @@ class Indira_Widget_Recent_Posts extends WP_Widget {
 		$presented = isset( $instance['presentation'] ) ? $instance['presentation'] : 'thumbnail';
 
 		$slider_opt = json_encode ( array (
-			'prevText'			=> '<span class="screen-reader-text">'. __('Previous', 'indira') .'</span>' . indira_svg_icon('arrow-left') ,
-			'nextText'			=> '<span class="screen-reader-text">'. __('Next', 'indira') .'</span>' . indira_svg_icon('arrow-right'),
+			'prevText'			=> '<span class="screen-reader-text">'. esc_html__('Previous', 'indira') .'</span>' . indira_svg_icon('arrow-left') ,
+			'nextText'			=> '<span class="screen-reader-text">'. esc_html__('Next', 'indira') .'</span>' . indira_svg_icon('arrow-right'),
 			'slideshow'			=> ( isset($instance['slideshow']) && $instance['slideshow'] == 'slideshow' ) ? true : false,
 			'slideshow_time'	=> isset( $instance['slideshow_time'] ) ? $instance['slideshow_time'] * 1000 : 5000,
 			'maxItems'			=> $slider_width == 'carousel' ? ( $presented == 'image-overlay' ? 3 : 4 ) : 1,
@@ -90,7 +90,6 @@ class Indira_Widget_Recent_Posts extends WP_Widget {
 			$slider_class = ' posts-slider slider-' . $slider_width;
 			$is_slider = true;
 			$attr_slider_opt = 'data-slider-options="' . esc_attr($slider_opt) . '"';
-			//$title = empty( $title ) ? '&nbsp' : $title;
 		} else {
 			$slider_class = '';
 			$is_slider = false;
@@ -144,6 +143,7 @@ class Indira_Widget_Recent_Posts extends WP_Widget {
 						<?php
 						if ( $is_slider && $slider_width == 'full') {
 							echo '<div class="slider-index">';
+							/* translators: %1$s: current slide number, %2$s: total slide number */
 							printf( esc_html__( 'Featured %1$s of %2$s', 'indira' ),
 								$featured->current_post + 1,
 								$featured->post_count
@@ -222,13 +222,13 @@ class Indira_Widget_Recent_Posts extends WP_Widget {
 		$slider_width	= isset( $instance['slider_width'] ) ? esc_attr( $instance['slider_width'] ) : 'carousel';
 
 ?>
-		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'indira' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'indira' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
-		<p><label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php _e( 'Category:', 'indira' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id( 'category' ); ?>"><?php esc_html_e( 'Category:', 'indira' ); ?></label>
 			<?php wp_dropdown_categories( 
 					array (
-						'show_option_all' => __('All Categories', 'indira'),
+						'show_option_all' => esc_html__('All Categories', 'indira'),
 						'name'            => $this->get_field_name( 'category' ),
 						'id'              => $this->get_field_id( 'category' ),
 						'selected'        => $category,
@@ -237,49 +237,49 @@ class Indira_Widget_Recent_Posts extends WP_Widget {
 			?>
 		</p>
 
-		<p><label for="<?php echo $this->get_field_id( 'tags' ); ?>"><?php _e( 'Tags:', 'indira' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id( 'tags' ); ?>"><?php esc_html_e( 'Tags:', 'indira' ); ?></label>
 		<input class="widefat" id="<?php $this->get_field_id( 'tags' ); ?>" name="<?php echo $this->get_field_name( 'tags' ); ?>" type="text" value="<?php echo $tags; ?>" />
 		</p>
 
-		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'indira' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php esc_html_e( 'Number of posts to show:', 'indira' ); ?></label>
 		<input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" /></p>
 
-		<p><label for="<?php echo $this->get_field_id( 'sort' ); ?>"><?php _e( 'Sort By:', 'indira' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id( 'sort' ); ?>"><?php esc_html_e( 'Sort By:', 'indira' ); ?></label>
 			<select id="<?php echo $this->get_field_id( 'sort' ); ?>" name="<?php echo $this->get_field_name( 'sort' ); ?>" >
-				<option value="date" <?php selected( $sort, 'date' ); ?> > <?php _e('Date', 'indira'); ?> </option>
-				<option value="comment_count" <?php selected( $sort, 'comment_count' ); ?> > <?php _e('Comments Number', 'indira'); ?> </option>
+				<option value="date" <?php selected( $sort, 'date' ); ?> > <?php esc_html_e('Date', 'indira'); ?> </option>
+				<option value="comment_count" <?php selected( $sort, 'comment_count' ); ?> > <?php esc_html_e('Comments Number', 'indira'); ?> </option>
 			</select>
 		</p>
 		<p>
-			<span><?php _e('Presented as', 'indira'); ?></span><br>
+			<span><?php esc_html_e('Presented as', 'indira'); ?></span><br>
 			<input type="radio" id="<?php echo $this->get_field_id( 'presentation' ) . '-1'; ?>" name="<?php echo $this->get_field_name( 'presentation' ); ?>" value="thumbnail" <?php checked( $presentation, 'thumbnail'); ?> />
-			<label for="<?php echo $this->get_field_id( 'presentation' ) . '-1'; ?>"><?php _e( 'Large Thumbnail', 'indira'); ?></label><br>
+			<label for="<?php echo $this->get_field_id( 'presentation' ) . '-1'; ?>"><?php esc_html_e( 'Large Thumbnail', 'indira'); ?></label><br>
 			
 			<input type="radio" id="<?php echo $this->get_field_id( 'presentation' ) . '-2'; ?>" name="<?php echo $this->get_field_name( 'presentation' ); ?>" value="small-thumbnail" <?php checked( $presentation, 'small-thumbnail'); ?>/>
-			<label for="<?php echo $this->get_field_id( 'presentation' ) . '-2'; ?>"><?php _e( 'Small thumbnail', 'indira'); ?></label><br>
+			<label for="<?php echo $this->get_field_id( 'presentation' ) . '-2'; ?>"><?php esc_html_e( 'Small thumbnail', 'indira'); ?></label><br>
 			
 			<input type="radio" id="<?php echo $this->get_field_id( 'presentation' ) . '-3'; ?>" name="<?php echo $this->get_field_name( 'presentation' ); ?>" value="image-overlay" class="presentation-featured-opt" <?php checked( $presentation, 'image-overlay'); ?>/>
-			<label for="<?php echo $this->get_field_id( 'presentation' ) . '-3'; ?>"><?php _e( 'Image Overlay', 'indira'); ?></label><br>
+			<label for="<?php echo $this->get_field_id( 'presentation' ) . '-3'; ?>"><?php esc_html_e( 'Image Overlay', 'indira'); ?></label><br>
 			
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'is_slider' ); ?>" name="<?php echo $this->get_field_name( 'is_slider' ); ?>" value="slider" class="is-slider" <?php checked( $is_slider, 'slider'); ?>/>
-			<label for="<?php echo $this->get_field_id( 'is_slider' ); ?>"><?php _e( 'Show as slider', 'indira'); ?></label><br> 
+			<label for="<?php echo $this->get_field_id( 'is_slider' ); ?>"><?php esc_html_e( 'Show as slider', 'indira'); ?></label><br> 
 
 			<span class="slider-options">
-				<label for="<?php echo $this->get_field_id( 'slider_width' ); ?>"><?php _e( 'Slide items width:', 'indira' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'slider_width' ); ?>"><?php esc_html_e( 'Slide items width:', 'indira' ); ?></label>
 				<select id="<?php echo $this->get_field_id( 'slider_width' ); ?>" name="<?php echo $this->get_field_name( 'slider_width' ); ?>" >
-					<option value="full" <?php selected($slider_width, 'full'); ?> ><?php _e('Full width', 'indira') ?></option>
-					<option value="carousel" <?php selected($slider_width, 'carousel'); ?> ><?php _e('Carousel', 'indira') ?></option>
+					<option value="full" <?php selected($slider_width, 'full'); ?> ><?php esc_html_e('Full width', 'indira') ?></option>
+					<option value="carousel" <?php selected($slider_width, 'carousel'); ?> ><?php esc_html_e('Carousel', 'indira') ?></option>
 				</select>
 
-				<input type="checkbox" id="<?php echo $this->get_field_id( 'slideshow' ); ?>" name="<?php echo $this->get_field_name( 'slideshow' ); ?>" value="slideshow" <?php checked( $slideshow, 'slideshow'); ?> /><label for="<?php echo $this->get_field_id( 'slideshow' ); ?>"><?php _e('Slideshow', 'indira'); ?></label><br>
-				<label for="<?php echo $this->get_field_id( 'slideshow_time' ); ?>"><?php _e( 'Slideshow time:', 'indira' ); ?></label><br>
+				<input type="checkbox" id="<?php echo $this->get_field_id( 'slideshow' ); ?>" name="<?php echo $this->get_field_name( 'slideshow' ); ?>" value="slideshow" <?php checked( $slideshow, 'slideshow'); ?> /><label for="<?php echo $this->get_field_id( 'slideshow' ); ?>"><?php esc_html_e('Slideshow', 'indira'); ?></label><br>
+				<label for="<?php echo $this->get_field_id( 'slideshow_time' ); ?>"><?php esc_html_e( 'Slideshow time:', 'indira' ); ?></label><br>
 				<input class="tiny-text" id="<?php echo $this->get_field_id( 'slideshow_time' ); ?>" name="<?php echo $this->get_field_name( 'slideshow_time' ); ?>" type="number" step="1" min="1" value="<?php echo $slideshow_time; ?>" size="3" /> 
-				<?php _e('in seconds', 'indira'); ?><br>
-				<label for="<?php echo $this->get_field_id( 'animation' ); ?>"><?php _e( 'Slide Animation:', 'indira' ); ?></label>
+				<?php esc_html_e('in seconds', 'indira'); ?><br>
+				<label for="<?php echo $this->get_field_id( 'animation' ); ?>"><?php esc_html_e( 'Slide Animation:', 'indira' ); ?></label>
 				<select id="<?php echo $this->get_field_id( 'animation' ); ?>" name="<?php echo $this->get_field_name( 'animation' ); ?>" >
-					<option value="fade" <?php selected($animation, 'fade'); ?> ><?php _e('Fade In/Out', 'indira') ?></option>
-					<option value="horizontal" <?php selected($animation, 'horizontal'); ?> ><?php _e('Slide Horizontal', 'indira') ?></option>
-					<option value="vertical" <?php selected($animation, 'vertical'); ?> ><?php _e('Slide Vertical', 'indira') ?></option>
+					<option value="fade" <?php selected($animation, 'fade'); ?> ><?php esc_html_e('Fade In/Out', 'indira') ?></option>
+					<option value="horizontal" <?php selected($animation, 'horizontal'); ?> ><?php esc_html_e('Slide Horizontal', 'indira') ?></option>
+					<option value="vertical" <?php selected($animation, 'vertical'); ?> ><?php esc_html_e('Slide Vertical', 'indira') ?></option>
 				</select>
 			</span>
 		</p>

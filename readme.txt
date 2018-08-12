@@ -1,11 +1,14 @@
 === Indira ===
 Contributors: FancyThemes
 Requires at least: WordPress 4.4
-Tested up to: WordPress 4.8
-Version: 1.0
+Tested up to: WordPress 4.9
+Version: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: black, blue, gray, green, white, yellow, dark, light, one-column, two-columns, right-sidebar, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+Tags: custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+
+Indira WordPress Theme, Copyright 2018 FancyThemes
+Indira is distributed under the terms of the GNU GPL
 
 == Description ==
 Indira Theme Documentation.
@@ -38,27 +41,12 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-Indira Theme bundles the following third-party resources:
-
-Flexslider, Copyright (c) 2015 WooThemes
-License: GNU GPL, Version 2 (or later)
-Source: https://github.com/woothemes/FlexSlider/
-
-FitVids, Copyright by Chris Coyier and Paravel
-Source: https://github.com/davatron5000/FitVids.js/
-
-svgxuse, Copyright by Keyamoon
-License: MIT
-https://github.com/Keyamoon/svgxuse
-
-Image used in screenshot.png: A photo by Austin Schmid (https://unsplash.com/photos/jmrCWqmVxpU), licensed under Creative Commons Zero(http://creativecommons.org/publicdomain/zero/1.0/)
-
 == Resources ==
 
 * HTML5 Shiv v3.7.0, (c) 2014 Alexander Farkas, MIT, https://github.com/aFarkas/html5shiv
 * Flexslider, (c) 2015 WooThemes, GNU GPL, Version 2 (or later), https://github.com/woothemes/FlexSlider/
 * FitVids, (c) by Chris Coyier and Paravel, https://github.com/davatron5000/FitVids.js/
 * Svgxuse, (c) 2015 by Keyamoon, MIT, https://github.com/Keyamoon/svgxuse/
-* Photographs used on Screenshot, (c) by Nic, CC0, http://littlevisuals.co/
-* Copse, by ---, Apache License 2.0, Hosted at Google Fonts
-* Source Sans Pro by --, Open Font License, Hosted at: Google Fonts
+* Old car photograph used on screenshot, (c) by Nic, CC0, http://littlevisuals.co/tagged/week-nine
+* Copse, by Dan Rhatigan, Open Font License, Hosted at Google Fonts
+* Source Sans Pro by Paul D. Hunt, Open Font License, Hosted at: Google Fonts
